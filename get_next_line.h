@@ -10,6 +10,13 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#define BUFFERSIZE 20
+
+#if BUFFERSIZE >= 10000000 || BUFFERSIZE < 1
+    #undef BUFFERSIZE
+    #define BUFFERSIZE 256
+#endif
+
 #ifndef GET_NEXT_LINE_H
 #define GET_NEXT_LINE_H
 #include <fcntl.h>
