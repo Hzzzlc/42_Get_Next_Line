@@ -6,7 +6,7 @@
 /*   By: hcruz-me <hcruz-me@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 12:49:51 by hcruz-me          #+#    #+#             */
-/*   Updated: 2024/10/10 16:39:50 by hcruz-me         ###   ########.fr       */
+/*   Updated: 2024/10/14 12:58:53 by hcruz-me         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 /*
 	Pasos para empezar GNL:
 	- La funcion de este proyecto es que te lea mediante un tamano definido en buffersize y te lo imprima tal cual el archivo
-	  con sus saltos de linea, sus espacios, etc.
+	  con sus saltos de linea, sus espacios, etc.== HECHO
 	- Saber abrir y cerrar el archivo .txt. == HECHO
 	- Imprimir el pimer parrafo, es decir hasta el primer salto de linea que encuentra.
 	- Va a leer de 20 en 20 caracteres y cuando termine de leer los primeros 20 va a poner +1 para el caracter nulo
@@ -31,20 +31,11 @@
 */
 char	*get_next_line(int fd)
 {
-	fd = open("hazel.txt", O_RDWR);
+	char *buffer;
+	int bytes_read;
+
+
 }
 char *set_line(char *buffer)
 {
-	int fd;
-	ssize_t bytes_read;
-	fd = open("hazel.txt", O_RDONLY);
-	int commit;
-	//Hay que leer el archivo hasta que encuentre un
-	//un salgo de linea esto se hara con strchr.
-	//esto a su vez generara un buffer que sea del tamano
-	//de lo que ha leido.
 }
-//Tendremos otra funcion que rellenara el buffer a la linea
-//que copio, la cual se le pasara como parametro fd, char lesftc
-//char buffer. utilizaremos tambien BUFFER_SIZE, hasta el salto de
-//linea o terminador.

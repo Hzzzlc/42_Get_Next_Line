@@ -6,11 +6,11 @@
 /*   By: hcruz-me <hcruz-me@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 12:50:49 by hcruz-me          #+#    #+#             */
-/*   Updated: 2024/10/09 15:34:14 by hcruz-me         ###   ########.fr       */
+/*   Updated: 2024/10/14 12:58:53 by hcruz-me         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#define BUFFERSIZE 20
+#define BUFFERSIZE 5
 
 #if BUFFERSIZE >= 10000000 || BUFFERSIZE < 1
     #undef BUFFERSIZE
@@ -22,6 +22,7 @@
 #include <fcntl.h>
 #include <unistd.h>
 #include <stdio.h>
+#include <stdlib.h>
 
 char	*ft_strchr(const char *s, int c);
 char	*ft_strdup(const char *s);
