@@ -10,11 +10,11 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#define BUFFERSIZE 5
+#define BUFFER_SIZE 5
 
-#if BUFFERSIZE >= 10000000 || BUFFERSIZE < 1
-    #undef BUFFERSIZE
-    #define BUFFERSIZE 256
+#if BUFFER_SIZE >= 10000000 || BUFFER_SIZE < 1
+    #undef BUFFER_SIZE
+    #define BUFFER_SIZE 256
 #endif
 
 #ifndef GET_NEXT_LINE_H
@@ -29,4 +29,5 @@ char	*ft_strdup(const char *s);
 size_t	ft_strlen(const char *str);
 char	*ft_substr(const char *s, unsigned int start, size_t len);
 char	*ft_strjoin(const char *s1, const char *s2);
+char	*ft_substr(const char *s, unsigned int start, size_t len);
 #endif

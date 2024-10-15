@@ -19,12 +19,13 @@ char *GNL()
 	if(!buffer)
 		return NULL;
 	//Reservamos memoria para cadenas :
-	cadenas = malloc(1);
+	// cadenas = malloc(1);
 	//Protegemos el malloc :
-	if(!cadenas)
-		return 0;
-	while((bytes_read = read(fd, buffer, BUFFERSIZE)) > 0)
+	// if(!cadenas)
+	// 	return 0;
+	while(bytes_read > 0)
 	{
+		bytes_read = read(fd, buffer, BUFFERSIZE);
 		//poner el caracter terminador :
 		buffer[bytes_read] = '\0';
 		char *position = ft_strchr(buffer, '.');
@@ -48,6 +49,25 @@ char *GNL()
 	free(buffer);
 	//Retornamos cadenas donde se almacena todo :
 	return cadenas;
+}
+static char *extract_phrase(char *cadenas)
+{
+	//Declaracion de variables :
+	int len; //La longitud de hasta donde se va a extaer esa frase.
+	char *phrase; //La frase extraida.
+	char *pointer;//Puntero donde de indicamos hasta donde queremos que nos lea.
+
+	//Le indicamos que solo queremos hasta el salto de linea.
+	pointer = ft_strchr(cadenas, '\n');
+	//Calculamos la longitud de la frase incluyendo el caracter terminador.
+	len = (pointer - cadenas) + 1;
+	//Sacamos la frase que queremos.
+	phrase = ft_substr(cadenas, 0, len);
+	//Como substr utiliza malloc, protegemos el malloc.
+	if(!phrase)
+	 return (NULL);
+	//Retornamos la frase.
+	return (phrase);
 }
 char	*ft_strjoin(const char *s1, const char *s2)
 {
