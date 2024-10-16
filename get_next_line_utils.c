@@ -6,7 +6,7 @@
 /*   By: hcruz-me <hcruz-me@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 12:50:21 by hcruz-me          #+#    #+#             */
-/*   Updated: 2024/10/14 12:45:48 by hcruz-me         ###   ########.fr       */
+/*   Updated: 2024/10/16 16:15:39 by hcruz-me         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,8 @@ size_t	ft_strlen(const char *str)
 	int	count;
 
 	count = 0;
+	if(!str)
+		return (0);
 	while (str[count] != '\0')
 	{
 		count++;
@@ -62,30 +64,35 @@ size_t	ft_strlen(const char *str)
 	return (count);
 }
 
-char	*ft_substr(const char *s, unsigned int start, size_t len)
+size_t	ft_strlcpy(char *dest, const char *src, size_t size)
 {
-	char	*substr;
+	size_t	src_len;
+	size_t	i;
 
-	if (!s)
-		return (NULL);
-	if (start > ft_strlen(s))
-		return (ft_strdup("\0"));
-	if (len > ft_strlen(s) - start)
-		len = ft_strlen(s) - start;
-	substr = (char *)malloc((len + 1) * sizeof(char));
-	if (!substr)
-		return (NULL);
-	ft_strlcpy(substr, (s + start), len + 1);
-	return (substr);
+	src_len = ft_strlen(src);
+	i = 0;
+	if (size == 0)
+		return (src_len);
+	if (size != 0)
+	{
+		while (src[i] && i < size - 1)
+		{
+			dest[i] = src[i];
+			i++;
+		}
+	}
+	dest[i] = '\0';
+	return (src_len);
 }
 
-char	*ft_strjoin(const char *s1, const char *s2)
+char	*ft_strjoin(char *s1, const char *s2)
 {
 	int		len;
 	int		i;
 	int		j;
 	char	*new_s;
-
+	if (!s1)
+		s1 = ft_strdup("");
 	len = ft_strlen(s1) + ft_strlen(s2);
 	new_s = malloc((len + 1) * sizeof(char));
 	if (!new_s)
@@ -104,8 +111,10 @@ char	*ft_strjoin(const char *s1, const char *s2)
 		j++;
 	}
 	new_s[i] = '\0';
+	free(s1);
 	return (new_s);
 }
+
 char	*ft_substr(const char *s, unsigned int start, size_t len)
 {
 	char	*substr;
