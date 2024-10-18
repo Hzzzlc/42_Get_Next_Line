@@ -6,7 +6,7 @@
 /*   By: hcruz-me <hcruz-me@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 12:50:21 by hcruz-me          #+#    #+#             */
-/*   Updated: 2024/10/18 11:26:11 by hcruz-me         ###   ########.fr       */
+/*   Updated: 2024/10/18 11:41:24 by hcruz-me         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,27 +64,6 @@ size_t	ft_strlen(const char *str)
 	return (count);
 }
 
-size_t	ft_strlcpy(char *dest, const char *src, size_t size)
-{
-	size_t	src_len;
-	size_t	i;
-
-	src_len = ft_strlen(src);
-	i = 0;
-	if (size == 0)
-		return (src_len);
-	if (size != 0)
-	{
-		while (src[i] && i < size - 1)
-		{
-			dest[i] = src[i];
-			i++;
-		}
-	}
-	dest[i] = '\0';
-	return (src_len);
-}
-
 char	*ft_strjoin(char *s1, const char *s2)
 {
 	int		len;
@@ -117,6 +96,7 @@ char	*ft_strjoin(char *s1, const char *s2)
 char	*ft_substr(char *s, unsigned int start, size_t len)
 {
 	char	*substr;
+	size_t	i;
 
 	if (!s)
 		return (NULL);
@@ -127,6 +107,12 @@ char	*ft_substr(char *s, unsigned int start, size_t len)
 	substr = (char *)malloc((len + 1) * sizeof(char));
 	if (!substr)
 		return (NULL);
-	ft_strlcpy(substr, (s + start), len + 1);
+	i = 0;
+	while (i < len && s[start + i])
+	{
+		substr[i] = s[start + i];
+		i++;
+	}
+	substr[i] = '\0';
 	return (substr);
 }

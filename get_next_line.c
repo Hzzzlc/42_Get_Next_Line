@@ -6,7 +6,7 @@
 /*   By: hcruz-me <hcruz-me@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 12:49:51 by hcruz-me          #+#    #+#             */
-/*   Updated: 2024/10/18 11:27:49 by hcruz-me         ###   ########.fr       */
+/*   Updated: 2024/10/18 11:44:11 by hcruz-me         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,30 +101,30 @@ char	*get_next_line(int fd)
 	return (phrase);
 }
 
-// int main(void)
-// {
-//     int     fd;
-//     char    *line;
+int main(void)
+{
+    int     fd;
+    char    *line;
 
-//     // Abrimos el archivo que queremos leer
-//     fd = open("hazel.txt", O_RDONLY);
-//     if (fd == -1)
-//     {
-//         perror("Error al abrir el archivo");
-//         return (1);
-//     }
-//     // // Leemos línea por línea con get_next_line
-// 	line = get_next_line(fd);
-// 	int n_lines = 1;
+    // Abrimos el archivo que queremos leer
+    fd = open("hazel.txt", O_RDONLY);
+    if (fd == -1)
+    {
+        perror("Error al abrir el archivo");
+        return (1);
+    }
+    // // Leemos línea por línea con get_next_line
+	line = get_next_line(fd);
+	int n_lines = 1;
 
-//     while (line != NULL && n_lines < 10)
-//     {
-//         printf("%d. %s", n_lines, line); // Imprimimos la línea
-//         free(line);   
-// 		line = get_next_line(fd);
-// 		n_lines++;      // Liberamos la memoria asignada para la línea
-//     }
-// 	printf("%s", line);
-// 	close(fd);
-//     return (0);
-// }
+    while (line != NULL && n_lines < 10)
+    {
+        printf("%d. %s", n_lines, line); // Imprimimos la línea
+        free(line);   
+		line = get_next_line(fd);
+		n_lines++;      // Liberamos la memoria asignada para la línea
+    }
+	printf("%s", line);
+	close(fd);
+    return (0);
+}
