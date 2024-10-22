@@ -71,6 +71,8 @@ char	*ft_strjoin(char *s1, const char *s2)
 	int		j;
 	char	*new_s;
 
+	if(!s1)
+		s1 = malloc(1);
 	len = ft_strlen(s1) + ft_strlen(s2);
 	new_s = malloc((len + 1) * sizeof(char));
 	if (!new_s)
@@ -93,26 +95,22 @@ char	*ft_strjoin(char *s1, const char *s2)
 	return (new_s);
 }
 
-char	*ft_substr(char *s, unsigned int start, size_t len)
+void	*ft_calloc(size_t nmemb, size_t size)
 {
-	char	*substr;
+	void	*buffer;
+	size_t	total_size;
 	size_t	i;
+	unsigned char	*ptr;
 
-	if (!s)
+	buffer = (void *)malloc(size * nmemb);
+	if (!buffer)
 		return (NULL);
-	if (start > ft_strlen(s))
-		return (ft_strdup("\0"));
-	if (len > ft_strlen(s) - start)
-		len = ft_strlen(s) - start;
-	substr = (char *)malloc((len + 1) * sizeof(char));
-	if (!substr)
-		return (NULL);
+	ptr = (unsigned char *)buffer;
 	i = 0;
-	while (i < len && s[start + i])
+	while (i < total_size)
 	{
-		substr[i] = s[start + i];
+		ptr[i] = '\0';
 		i++;
 	}
-	substr[i] = '\0';
-	return (substr);
+	return (buffer);
 }

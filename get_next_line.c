@@ -17,11 +17,11 @@ static char	*read_phrase(int fd, char *warhouse)
 	int		bytes_read;
 	char	*buffer;
 
-	buffer = malloc((BUFFER_SIZE + 1) * sizeof(char));
+	buffer = ft_calloc((BUFFER_SIZE + 1), sizeof(char));
 	if (!buffer)
 		return (NULL);
 	bytes_read = 1;
-	while (bytes_read > 0 && !ft_strchr(warhouse, '\n'))
+	while (bytes_read != 0 && !ft_strchr(warhouse, '\n'))
 	{
 		bytes_read = read(fd, buffer, BUFFER_SIZE);
 		if (bytes_read == -1)
@@ -38,93 +38,84 @@ static char	*read_phrase(int fd, char *warhouse)
 static char	*extract_phrase(char *warhouse)
 {
 	int		len;
-	char	*pointer;
 	char	*phrase;
 
-	pointer = ft_strchr(warhouse, '\n');
-	if (!pointer)
+	len = 0;
+	if(!warhouse[len])
 		return (NULL);
-	len = (pointer - warhouse) + 1;
-	phrase = ft_substr(warhouse, 0, len);
+	while (warhouse && warhouse[len] != '\n')
+		len++;
+	phrase = ft_calloc(sizeof(char), (len + 2)); //Contando salto de linea y el caracter terminador.
 	if (!phrase)
 		return (NULL);
+	len = 0;
+	if(warhouse && warhouse[len] == '\n')
+	{
+		phrase[len] = warhouse[len];
+		len++;
+	}
 	return (phrase);
 }
 
-static char	*ft_free(char **phrase)
-{
-	free(*phrase);
-	*phrase = NULL;
-	return (NULL);
-}
 
 static char	*clean_warhouse(char *warhouse)
 {
-	int		len;
-	char	*pointer;
-	char	*new_warhouse;
+	char	*new_rest;
+	int		i;
+	int		j;
 
-	pointer = ft_strchr(warhouse, '\n');
-	if (!pointer)
+	i = 0;
+	while (warhouse[i] && warhouse[i] != '\n')
+		i++;
+	if (!warhouse[i])
 	{
-		new_warhouse = NULL;
-		return (ft_free(&warhouse));
-	}
-	else
-		len = (pointer - warhouse) + 1;
-	new_warhouse = ft_substr(warhouse, len, ft_strlen(warhouse) - len);
-	ft_free(&warhouse);
-	if (!new_warhouse)
+		free (warhouse);
 		return (NULL);
-	return (new_warhouse);
+	}
+	new_rest =(char *)ft_calloc(sizeof(char), ft_strlen(warhouse) - i + 1);
+	if (!new_rest)
+		return (NULL);
+	i++;
+	j = 0;
+	while (warhouse[i])
+		new_rest[j++] = warhouse[i++];
+	free(warhouse);
+	return (new_rest);
 }
 
 char	*get_next_line(int fd)
 {
-	char		*phrase;
+	char		*line_readed;
 	static char	*warhouse;
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
-	if (warhouse == NULL)
-		warhouse = ft_strdup("");
-	if (!warhouse)
-		return (NULL);
 	warhouse = read_phrase(fd, warhouse);
-	printf("%s\n", warhouse);
+	printf("hola");
 	if (!warhouse)
 		return (NULL);
-	phrase = extract_phrase(warhouse);
-	if (!phrase)
-		return (ft_free(&warhouse));
+	line_readed = extract_phrase(warhouse);
 	warhouse = clean_warhouse(warhouse);
-	return (phrase);
+	return (line_readed);
 }
 
-int main(void)
+int	main(void)
 {
-    int     fd;
-    char    *line;
-
-    // Abrimos el archivo que queremos leer
-    fd = open("hazel.txt", O_RDONLY);
-    if (fd == -1)
-    {
-        perror("Error al abrir el archivo");
-        return (1);
-    }
-    // // Leemos línea por línea con get_next_line
-	line = get_next_line(fd);
-	int n_lines = 1;
-
-    while (line != NULL && n_lines < 10)
-    {
-        printf("%d. %s", n_lines, line); // Imprimimos la línea
-        free(line);   
-		line = get_next_line(fd);
-		n_lines++;      // Liberamos la memoria asignada para la línea
-    }
-	printf("%s", line);
+	int fd = open("el_quijote.txt", O_RDONLY); 
+	if (fd == -1)
+	{
+		perror("Error opening the file");
+		return 1;
+	}
+	char *linereaded = NULL;
+  	int n_lines = 0;
+	while ((linereaded = get_next_line(fd)) != NULL)
+	{
+		n_lines++;
+    	printf("%d. %s", n_lines, linereaded);
+    	free(linereaded);
+	}
+	printf("\ntotal lines readed: %d\n", n_lines);
 	close(fd);
-    return (0);
+    return 0;
 }
