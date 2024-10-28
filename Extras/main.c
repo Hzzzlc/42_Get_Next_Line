@@ -2,11 +2,7 @@
 
 int	main(void)
 {
-
-	int fd;
-	
-	fd = open("hazel.txt", O_RDWR);
-	
+	int fd = open("el_quijote.txt", O_RDONLY); 
 	if (fd == -1)
 	{
 		perror("Error opening the file");
@@ -14,16 +10,13 @@ int	main(void)
 	}
 	char *linereaded = NULL;
   	int n_lines = 0;
-	linereaded = get_next_line(fd);
-	while (linereaded != NULL)
+	while ((linereaded = get_next_line(fd)) != NULL)
 	{
-		
 		n_lines++;
     	printf("%d. %s", n_lines, linereaded);
     	free(linereaded);
-		linereaded = get_next_line(fd);
 	}
-	printf("entotal lines readed: %d\n", n_lines);
+	printf("\ntotal lines readed: %d\n", n_lines);
 	close(fd);
     return 0;
 }
