@@ -6,7 +6,7 @@
 /*   By: hcruz-me <hcruz-me@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 12:50:21 by hcruz-me          #+#    #+#             */
-/*   Updated: 2024/10/28 11:07:04 by hcruz-me         ###   ########.fr       */
+/*   Updated: 2024/10/28 12:48:20 by hcruz-me         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,10 +71,8 @@ char	*ft_strjoin(char *s1, char *s2)
 	int			j;
 	char		*new_s;
 
-	// if (!s1)
-	//  	s1 = malloc(1);
 	if (!s1 || !s2)
-	 	return (NULL);
+		return (NULL);
 	len = ft_strlen(s1) + ft_strlen(s2);
 	new_s = ft_calloc((len + 1), sizeof(char));
 	if (!new_s)
@@ -95,9 +93,9 @@ char	*ft_strjoin(char *s1, char *s2)
 
 void	*ft_calloc(size_t nmemb, size_t size)
 {
-	void	*buffer;
-	size_t	total_size;
-	size_t	i;
+	void			*buffer;
+	size_t			total_size;
+	size_t			i;
 	unsigned char	*ptr;
 
 	total_size = nmemb * size;

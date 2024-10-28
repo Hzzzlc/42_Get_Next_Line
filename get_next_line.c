@@ -6,7 +6,7 @@
 /*   By: hcruz-me <hcruz-me@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 12:49:51 by hcruz-me          #+#    #+#             */
-/*   Updated: 2024/10/28 12:35:56 by hcruz-me         ###   ########.fr       */
+/*   Updated: 2024/10/28 12:46:30 by hcruz-me         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,10 @@ static char	*read_phrase(int fd, char *warhouse)
 	{
 		bytes_read = read(fd, buffer, BUFFER_SIZE);
 		if (bytes_read == -1)
-			return(free(warhouse), free(buffer), NULL);
+			return (free(warhouse), free(buffer), NULL);
 		buffer[bytes_read] = '\0';
 		if (!warhouse)
-			warhouse = ft_calloc(1, sizeof(char)); 
+			warhouse = ft_calloc(1, sizeof(char));
 		warhouse = ft_strjoin(warhouse, buffer);
 		if (!warhouse)
 			return (free(buffer), NULL);
@@ -44,7 +44,7 @@ static char	*extract_phrase(char *warhouse)
 	char	*phrase;
 
 	len = 0;
-	if(!warhouse[len])
+	if (!warhouse[len])
 		return (NULL);
 	while (warhouse[len] && warhouse[len] != '\n')
 		len++;
@@ -63,7 +63,6 @@ static char	*extract_phrase(char *warhouse)
 	return (phrase);
 }
 
-
 static char	*clean_warhouse(char *warhouse)
 {
 	char	*new_warhouse;
@@ -74,7 +73,7 @@ static char	*clean_warhouse(char *warhouse)
 	while (warhouse[i] && warhouse[i] != '\n')
 		i++;
 	if (!warhouse[i])
-		return(free(warhouse), NULL);
+		return (free(warhouse), NULL);
 	i++;
 	new_warhouse = ft_calloc(sizeof(char), ft_strlen(warhouse) - i + 1);
 	if (!new_warhouse)
@@ -100,31 +99,3 @@ char	*get_next_line(int fd)
 	warhouse = clean_warhouse(warhouse);
 	return (phrase);
 }
-
-// int	main(void)
-// {
-
-// 	int fd;
-	
-// 	fd = open("hazel.txt", O_RDWR);
-	
-// 	if (fd == -1)
-// 	{
-// 		perror("Error opening the file");
-// 		return 1;
-// 	}
-// 	char *linereaded = NULL;
-//   	int n_lines = 0;
-// 	linereaded = get_next_line(fd);
-// 	while (linereaded != NULL)
-// 	{
-		
-// 		n_lines++;
-//     	printf("%d. %s", n_lines, linereaded);
-//     	free(linereaded);
-// 		linereaded = get_next_line(fd);
-// 	}
-// 	printf("entotal lines readed: %d\n", n_lines);
-// 	close(fd);
-//     return 0;
-// }

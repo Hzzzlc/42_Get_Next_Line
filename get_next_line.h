@@ -6,7 +6,7 @@
 /*   By: hcruz-me <hcruz-me@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 12:50:49 by hcruz-me          #+#    #+#             */
-/*   Updated: 2024/10/28 12:35:12 by hcruz-me         ###   ########.fr       */
+/*   Updated: 2024/10/28 12:49:19 by hcruz-me         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 #  define BUFFER_SIZE 1000000
 # endif
 
-char    *get_next_line(int fd);
+char	*get_next_line(int fd);
 char	*ft_strchr(const char *s, int c);
 char	*ft_strdup(const char *s);
 size_t	ft_strlen(const char *str);
