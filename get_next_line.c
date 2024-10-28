@@ -6,7 +6,7 @@
 /*   By: hcruz-me <hcruz-me@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 12:49:51 by hcruz-me          #+#    #+#             */
-/*   Updated: 2024/10/28 10:54:53 by hcruz-me         ###   ########.fr       */
+/*   Updated: 2024/10/28 12:35:56 by hcruz-me         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ static char	*extract_phrase(char *warhouse)
 		return (NULL);
 	while (warhouse[len] && warhouse[len] != '\n')
 		len++;
-	phrase = ft_calloc(sizeof(char), (len + 2)); //Contando salto de linea y el caracter terminador.
+	phrase = ft_calloc(sizeof(char), (len + 2));
 	if (!phrase)
 		return (NULL);
 	i = 0;
@@ -101,26 +101,30 @@ char	*get_next_line(int fd)
 	return (phrase);
 }
 
-int	main(void)
-{
-	int fd = open("el_quijote.txt", O_RDONLY);
-	if (fd == -1)
-	{
-		perror("Error opening the file");
-		return 1;
-	}
-	char *linereaded = NULL;
-  	int n_lines = 0;
-	linereaded = get_next_line(fd);
-	while (linereaded != NULL)
-	{
+// int	main(void)
+// {
+
+// 	int fd;
+	
+// 	fd = open("hazel.txt", O_RDWR);
+	
+// 	if (fd == -1)
+// 	{
+// 		perror("Error opening the file");
+// 		return 1;
+// 	}
+// 	char *linereaded = NULL;
+//   	int n_lines = 0;
+// 	linereaded = get_next_line(fd);
+// 	while (linereaded != NULL)
+// 	{
 		
-		n_lines++;
-    	printf("%d. %s", n_lines, linereaded);
-    	free(linereaded);
-		linereaded = get_next_line(fd);
-	}
-	printf("\ntotal lines readed: %d\n", n_lines);
-	close(fd);
-    return 0;
-}
+// 		n_lines++;
+//     	printf("%d. %s", n_lines, linereaded);
+//     	free(linereaded);
+// 		linereaded = get_next_line(fd);
+// 	}
+// 	printf("entotal lines readed: %d\n", n_lines);
+// 	close(fd);
+//     return 0;
+// }
