@@ -6,7 +6,7 @@
 /*   By: hcruz-me <hcruz-me@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 12:50:21 by hcruz-me          #+#    #+#             */
-/*   Updated: 2024/10/18 11:41:24 by hcruz-me         ###   ########.fr       */
+/*   Updated: 2024/10/24 15:10:14 by hcruz-me         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,25 +64,24 @@ size_t	ft_strlen(const char *str)
 	return (count);
 }
 
-char	*ft_strjoin(char *s1, const char *s2)
+char	*ft_strjoin(char *s1, char *s2)
 {
-	int		len;
-	int		i;
-	int		j;
-	char	*new_s;
+	size_t		len;
+	int			i;
+	int			j;
+	char		*new_s;
 
-	if(!s1)
-		s1 = malloc(1);
+	// if (!s1)
+	//  	s1 = malloc(1);
+	if (!s1 || !s2)
+	 	return (NULL);
 	len = ft_strlen(s1) + ft_strlen(s2);
-	new_s = malloc((len + 1) * sizeof(char));
+	new_s = ft_calloc((len + 1), sizeof(char));
 	if (!new_s)
 		return (NULL);
-	i = 0;
-	while (s1[i] != '\0')
-	{
+	i = -1;
+	while (s1[++i])
 		new_s[i] = s1[i];
-		i++;
-	}
 	j = 0;
 	while (s2[j] != '\0')
 	{
@@ -90,7 +89,6 @@ char	*ft_strjoin(char *s1, const char *s2)
 		i++;
 		j++;
 	}
-	new_s[i] = '\0';
 	free(s1);
 	return (new_s);
 }
@@ -102,7 +100,8 @@ void	*ft_calloc(size_t nmemb, size_t size)
 	size_t	i;
 	unsigned char	*ptr;
 
-	buffer = (void *)malloc(size * nmemb);
+	total_size = nmemb * size;
+	buffer = malloc(total_size);
 	if (!buffer)
 		return (NULL);
 	ptr = (unsigned char *)buffer;
