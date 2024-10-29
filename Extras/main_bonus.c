@@ -20,7 +20,7 @@ int main()
         line2 = get_next_line(fd2);
         if(line1)
         {
-            printf("Archivo 1 : %s", line2);
+            printf("Archivo 2 : %s", line2);
             free(line2);
         }
         if(!line1 && !line2)

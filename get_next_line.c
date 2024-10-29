@@ -38,7 +38,7 @@ static char	*read_phrase(int fd, char *warhouse)
 		//Condición el cual si no existe warhouse, lo declaramos con una reserva de memoria de 1 :
 		if (!warhouse)
 			warhouse = ft_calloc(1, sizeof(char));
-		//Unimos mediante un strjoin las frases que va leyendo y guardando en buffer :
+		//Unimos mediante un strjoin las frases que va leyendo y guardando en warhouse :
 		warhouse = ft_strjoin(warhouse, buffer);
 		//Protegemos el malloc para leaks :
 		if (!warhouse)

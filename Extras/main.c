@@ -2,7 +2,7 @@
 
 int	main(void)
 {
-	int fd = open("el_quijote.txt", O_RDONLY); 
+	int fd = open("hazel.txt", O_RDONLY); 
 	if (fd == -1)
 	{
 		perror("Error opening the file");
